@@ -20,16 +20,23 @@ UINT8 g_cursorY = CURSOR_Y_OFFSET;
 IMPORT_FONT(font);
 IMPORT_MAP(menu_bg);
 
+
+// TITLES
+#define GAME_TITLE  "QX11"
+#define START_GAME_TITLE "START"
+#define OPTIONS_TITLE "OPTIONS"
+#define CREDITS_TITLE "CREDITS"
+
 // Initialise the menu text
 void InitMenuText(void){
 	INIT_FONT_EX(font, PRINT_BKG);	// PRINT_BKG to draw on the background, PRINT_WIN to draw on window
-	PRINT(4, 2, "PIRATE GAME");
-	PRINT(5, 8, "START GAME");
+	PRINT(4, 2, GAME_TITLE);
+	PRINT(5, 8, START_GAME_TITLE);
 	g_menuCursor = SpriteManagerAdd(SpriteCursor, CURSOR_X, g_cursorY);
 
-	PRINT(5, 10, "OPTIONS");
+	PRINT(5, 10, OPTIONS_TITLE);
 
-	PRINT(5, 12, "CREDITS");
+	PRINT(5, 12, CREDITS_TITLE);
 }
 
 void START(void) {
