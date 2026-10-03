@@ -1,0 +1,50 @@
+{
+    "activeFile": "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map.tmx": {
+            "scale": 1.7165,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 534.8092047771629,
+                "y": 150.01456452082726
+            }
+        },
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map_tilemapPacked.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/tilemap_packed_4col.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/tilemap_packed_background_4col.tsx": {
+            "scaleInDock": 2.0104,
+            "scaleInEditor": 5.5
+        }
+    },
+    "last.imagePath": "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/kenney_monochrome-pirates/Monochrome/Tilemap",
+    "map.height": 128,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 128,
+    "openFiles": [
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map.tmx",
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/tilemap_packed_background_4col.tsx"
+    ],
+    "project": "ocean_map.tiled-project",
+    "recentFiles": [
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/tilemap_packed_background_4col.tsx",
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map.tmx",
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/tilemap_packed_4col.tsx",
+        "/Users/Shared/Projects/GB/Ships_GBJAM14/res/sprites/source/ocean_map_tilemapPacked.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
+}
