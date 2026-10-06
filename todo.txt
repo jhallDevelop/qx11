@@ -1,0 +1,142 @@
+# TODO
+
+[] PlayerSprite
+[] Test Map
+[] Enemy Sprite
+[] Player Movement
+[] Player Attack Melee
+[] Player Attack Shoot
+[] Block Sprite
+[] Block Take Damage
+[] Block Destroy
+[] Block drop item
+[] Item pickup and store stat
+
+## Game Flow
+[] Menu [] -> Continue
+	[] -> Load/Save
+	[] -> Options
+
+## Game screen story
+
+## Intro Slides
+ - Intro #1
+	Deployed in the truck
+ - Intro #2
+	Comment to commrad
+ - Intro #3
+	Jump out of truck into action
+
+# ---- Player ----
+## Movement
+ - D pad
+
+## State
+ - Alive, Dead, Asleep, Knocked Out, Combat, Talking, Travelling
+
+## Movement Data
+ - localX
+ - localY
+ - globalX
+ - globalY
+ - velX
+ - velY
+ - accel
+ - friction
+
+## Stats
+ - Health
+ - Defense
+ - Charisma
+ - Sneak/Perception
+ - Power
+ - Intelligence
+ - Alignment/Team
+ - Stat #8
+
+## Combat
+ - Shoot
+
+## Inventory
+ - Bag
+ - Items
+ - Equiped
+
+# UI
+ - Player Stats
+ - Player Inventory
+ - Supply box Inventory
+
+## Animations
+ - Walk
+ - Idle
+ - Die
+
+# ---- NPC ----
+## Enemy Types
+ - Humanoid
+	- Guard
+	- Scavenger
+	- Soldier
+	- Prisoner
+ 
+- Animal
+	- Wolf
+	- Chicken
+	- Pig
+	- Cow
+
+
+## Movement
+
+## Stats
+ - Health
+ - Defense
+ - Charisma
+ - Sneak/Perception
+ - Power
+ - Intelligence
+
+## Animation
+ - Walk
+ - Idle
+ - Die
+
+# ---- Environment ----
+### Frontline Map
+ - trench front
+ - Shoot waves of incomming
+
+## Captured Slides
+ - Capture #1
+ - Surrender #2
+ - Knocked out #3
+
+### Prison Camp
+ - talk to prisoners
+ - Talk to guards
+ - Open supplies
+ 
+### Prison Escape
+ - Evade guards
+ - Cut fence with found scissors
+ - Talk your way out of it
+ - Kill guards
+
+### Wilderness
+ - Static map
+ - Procedural Gen... eventually
+ - Cut wood
+ - Fight off wolves
+ - Fight enemy
+ - Build protection wall
+ - Craft weapons and food
+ - Build defense
+ - Find recruits
+
+## Meta Game
+Infiltrate/get captured
+ - Loop prison to find recruits, supplies, damage enmey
+
+
+

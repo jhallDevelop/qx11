@@ -14,9 +14,10 @@
 
 // Sprites
 const UINT8 anim_vert[]  = {1, 0}; 	// Top Left Vert aligned
+const UINT8 anim_vertBack[] = {0,2};	// Bottom Left
 const UINT8 anim_horiz[] = {1, 1};	// Top Right Horizontal aligned 
-const UINT8 anim_diag[] = {0, 2};	// Bottom Left Diagonal
-const UINT8 anim_flicker[] = {2, 2};	// Empty spot in sprite sheet
+const UINT8 anim_diag[] = {1, 1};	// Bottom Left Diagonal
+const UINT8 anim_flicker[] = {0, 2};	// Empty spot in sprite sheet
 
 
 
@@ -28,7 +29,7 @@ INT8 dX = 0;
 
 // Player movement physics
 #define PLAYER_ACCEL 1 
-#define PLAYER_FRICTION 1
+#define PLAYER_FRICTION 2
 
 // Shooting
 #define MAX_COOLDOWN 15
@@ -103,9 +104,6 @@ void UpdateMovement(void){
 
 // Update input keys
 void UpdateInput(void){
-	if(keys == 0){
-		return;
-	}
 
 	// zero direction
 	// Calcuate X Velocity
@@ -166,7 +164,7 @@ void UpdateInput(void){
 		g_direction = DIR_UP_RIGHT;
 
 	}else if(dX == -1 && dY == -1){		// Flip X and Y: Up Left
-		THIS->mirror = HV_MIRROR; 
+		//THIS->mirror = HV_MIRROR; 
         	SetSpriteAnim(THIS, anim_diag, 15);
 		g_direction = DIR_UP_LEFT;
 
@@ -178,8 +176,9 @@ void UpdateInput(void){
         	SetSpriteAnim(THIS, anim_vert, 15);
 		g_direction = DIR_DOWN;
 	} else if(dY == -1){			// Flip Y: Up
-		THIS->mirror = HV_MIRROR; 
-        	SetSpriteAnim(THIS, anim_vert, 15);
+		//THIS->mirror = HV_MIRROR; 
+        	//SetSpriteAnim(THIS, anim_vert, 15);
+		SetSpriteAnim(THIS, anim_vertBack, 15);
 		g_direction = DIR_UP;
 	}
 
