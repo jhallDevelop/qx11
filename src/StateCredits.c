@@ -19,7 +19,7 @@ void InitCreditsText(void){
 void START(void) {
 	// Music
 //	PlayMusic(Compression,1);
-
+	
 	// Sound
 	NR52_REG = 0x80;	// Enables sound, always set first
 	NR51_REG = 0xFF;	// Enables all channels (left and right)

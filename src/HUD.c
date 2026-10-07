@@ -19,10 +19,17 @@ void InitHUD(void){
 	INIT_HUD(hud);
 
 	INIT_FONT_EX(font, PRINT_WIN);
+
+	// Clear the visible window layer by drawing empty spaces
+	for(UINT8 i = 0; i < 20; i++){
+		UPDATE_HUD_TILE(i, 0, 0); // x, y, tile index 0
+	}
+
 }
-void UpdateHUD(ActorData* _player){
+
+void UpdateHUD(DynamicActor* _player){
 	// Draw the hearts
-	for(INT8 i = 0; i < MAX_LIFE; i++){
+	for(UINT8 i = 0; i < MAX_LIFE; i++){
 		if(i < _player->health){
 			UPDATE_HUD_TILE(i, 0, 2);	// Draw full heart (index 1)
 		}else{

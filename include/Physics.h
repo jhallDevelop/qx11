@@ -5,6 +5,5 @@
 #define MAX_VELOCITY 16
 #define DIV_SCALE 16
 
-void PhysicsUpdate(ActorData* _actorData);
-
+void Physics_Update(DynamicActor* _actorData);
 #endif

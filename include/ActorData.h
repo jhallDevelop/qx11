@@ -13,23 +13,33 @@ typedef enum Direction {
 	DIR_DOWN_RIGHT
 } Direction;
 
-typedef struct ActorData {
-	INT8 health;
-	//INT8 shield;
-	INT8 flashTimer;
-	INT8 dirX;
-	INT8 dirY;
+typedef struct Vec2 {
+	INT8 x;
+	INT8 y;
+} Vec2;
+
+typedef struct DynamicActor {
+	UINT8 health;
+	UINT8 stateFlags; // isAlive, isEnabled, isVisible, isAtacking
+	UINT8 speed;
+	Vec2 dir;	
 
 	// Physics
-	INT8 velX;
-	INT8 velY;
-	INT8 accX;
-	INT8 accY;
-	INT8 moveX;
-	INT8 moveY;
-} ActorData;
+	Vec2 pos;
+	Vec2 vel;
+	Vec2 acc;
+	UINT8 accelConst;
+	UINT8 frictionConst; 
+} DynamicActor;
 
-void InitActor(ActorData* _data);
+typedef struct StaticActor {
+	UINT8 stateFlags;
+	Vec2 pos;
+} StaticActor;
+
+// Init
+void InitDynamicActor(DynamicActor* _data);
+void InitStaticActor(StaticActor* _data);
 
 
 #endif

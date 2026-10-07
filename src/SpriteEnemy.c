@@ -45,8 +45,8 @@ INT8 g_nextYPos = 0;
 void UpdateEnemyCollisionCheck(void);
 
 void START(void){
-	ActorData* data = (ActorData*)THIS->custom_data;
-	InitActor(data);
+	DynamicActor* data = (DynamicActor*)THIS->custom_data;
+	InitDynamicActor(data);
 	data->health = MAX_HEALTH;
 
 	// init random numbers
@@ -58,7 +58,7 @@ void START(void){
 void AIUpdate(void){
 
 	// Get player sprite data
-	ActorData* actor = (ActorData*)THIS->custom_data;
+	DynamicActor* actor = (DynamicActor*)THIS->custom_data;
 
 	// Shoot towards the player, then reset count
 	if(g_enemyShootCooldown == 0){
@@ -68,28 +68,28 @@ void AIUpdate(void){
 		switch(g_enemyDirection){
 			case DIR_UP:
 				spawnY -= ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = 0;
-				actor->dirY = -1;
+				actor->dir.x = 0;
+				actor->dir.y = -1;
 			break;
 
 			case DIR_DOWN:
 				spawnY += ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = 0;
-				actor->dirY = 1;
+				actor->dir.x = 0;
+				actor->dir.y = 1;
 
 			break;
 
 			case DIR_LEFT:
 				spawnX -= ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = -1;
-				actor->dirY = -0;
+				actor->dir.x = -1;
+				actor->dir.y = -0;
 
 			break;
 
 			case DIR_RIGHT:
 				spawnX += ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = 1;
-				actor->dirY = 0;
+				actor->dir.x = 1;
+				actor->dir.y = 0;
 
 			break;
 			
@@ -97,8 +97,8 @@ void AIUpdate(void){
 				spawnX -= ENEMY_BULLET_SPAWN_DISTANCE;
 				spawnY -= ENEMY_BULLET_SPAWN_DISTANCE;
 
-				actor->dirX = -1;
-				actor->dirY = -1;
+				actor->dir.x = -1;
+				actor->dir.y = -1;
 
 
 			break;
@@ -106,8 +106,8 @@ void AIUpdate(void){
 			case DIR_UP_RIGHT:
 				spawnX += ENEMY_BULLET_SPAWN_DISTANCE;
 				spawnY -= ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = 1;
-				actor->dirY = -1;
+				actor->dir.x = 1;
+				actor->dir.y = -1;
 
 
 			break;
@@ -116,8 +116,8 @@ void AIUpdate(void){
 			case DIR_DOWN_LEFT:
 				spawnX -= ENEMY_BULLET_SPAWN_DISTANCE;
 				spawnY += ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = -1;
-				actor->dirY = 1;
+				actor->dir.x = -1;
+				actor->dir.y = 1;
 
 
 			break;
@@ -125,17 +125,17 @@ void AIUpdate(void){
 			case DIR_DOWN_RIGHT:
 				spawnX += ENEMY_BULLET_SPAWN_DISTANCE;
 				spawnY += ENEMY_BULLET_SPAWN_DISTANCE;
-				actor->dirX = 1;
-				actor->dirY = 1;
+				actor->dir.x = 1;
+				actor->dir.y = 1;
 
 	
 			break;
 		}
 		Sprite* bullet = SpriteManagerAdd(SpriteBullet, spawnX, spawnY);
-		ActorData* bulletData = (ActorData*)bullet->custom_data;
+		DynamicActor* bulletData = (DynamicActor*)bullet->custom_data;
 		// Set the bullet direction
-		bulletData->dirX = actor->dirX;
-		bulletData->dirY = actor->dirY;
+		bulletData->dir.x = actor->dir.x;
+		bulletData->dir.y = actor->dir.y;
 		g_enemyShootCooldown = MAX_COOLDOWN;	// frames to wait before next shot		
 	}
 	
@@ -157,8 +157,8 @@ void AIUpdate(void){
 		// subtract results of two comparisons to create branchless clamp
 		//actor->dirX = (g_nextXPos > THIS->x) - (g_nextXPos < THIS->x);
 		//actor->dirY = (g_nextYPos > THIS->y) - (g_nextYPos < THIS->y);
-		actor->dirX = (rand() % 3) -1;
-		actor->dirY = (rand() % 3) -1;
+		actor->dir.x = (rand() % 3) -1;
+		actor->dir.y = (rand() % 3) -1;
 
 	}
 	// increment timer
@@ -168,14 +168,14 @@ void AIUpdate(void){
 
 void UPDATE(void){
 	
-	ActorData* actorData = (ActorData*)THIS->custom_data;
+	DynamicActor* actorData = (DynamicActor*)THIS->custom_data;
 
 	// move towards direction
-	PhysicsUpdate(actorData);
+	Physics_Update(actorData);
 
 
 	UpdateEnemyCollisionCheck();
-
+	/*
 	// Process the flash animation if the timer is above zero
 	if(actorData->flashTimer > 0){
 		actorData->flashTimer--;	// count down
@@ -188,7 +188,7 @@ void UPDATE(void){
 			// Return sprite to normal 
 			SetSpriteAnim(THIS, anim_normal, 15);
 		}
-	}
+	}*/
 
 	AIUpdate();
 }
@@ -206,7 +206,7 @@ void UpdateEnemyCollisionCheck(void){
 		if(spr->type == SpriteBullet){
 			if(CheckCollision(THIS, spr)) {
 				// Destory both the enemy and bullet
-				ActorData* targetData = (ActorData*)THIS->custom_data;
+				DynamicActor* targetData = (DynamicActor*)THIS->custom_data;
 				targetData->health -= 1;			      
 									
 				// Remove the Bullet
@@ -239,7 +239,7 @@ void UpdateEnemyCollisionCheck(void){
 				} else{
 					// Play bounce effect
 					// Punchy mid-frequency thud when enemy absorbs bullet
-					targetData->flashTimer = FLICKER_TIME;
+					//targetData->flashTimer = FLICKER_TIME;
     					PlayFx(CHANNEL_4, 0, 0x05, 0xF4, 0x42, 0xC0);
 				
 				}

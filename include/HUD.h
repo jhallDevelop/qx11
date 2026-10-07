@@ -3,7 +3,7 @@
 #include "ActorData.h"
 
 void InitHUD(void);
-extern void UpdateHUD(ActorData* _player);
+extern void UpdateHUD(DynamicActor* _player);
 
 #endif
 

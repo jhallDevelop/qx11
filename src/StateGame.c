@@ -5,6 +5,7 @@
 #include "Music.h"
 #include "Shake.h"
 #include "GameData.h"
+#include "Hud.h"
 
 // MUSIC
 DECLARE_MUSIC(Compression);
