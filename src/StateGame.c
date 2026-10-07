@@ -10,10 +10,10 @@
 DECLARE_MUSIC(Compression);
 
 // MAP
-IMPORT_MAP(ocean_map);
+IMPORT_MAP(island);
 
 // List every solid tile ID. Skip 4. The list must end with 0.
-UINT8 collision_tiles[] = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 0};
+UINT8 collision_tiles[] = {1, 0};//{1, 3,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 0};
 
 
 
@@ -55,7 +55,7 @@ void InitGame(void){
 
 		
 	// Init the game mapp
-	InitScroll(BANK(ocean_map), &ocean_map, collision_tiles, 0);
+	InitScroll(BANK(island), &island, collision_tiles, 0);
 
 	InitHUD();
 	
