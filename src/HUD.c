@@ -2,7 +2,8 @@
 #include "ZGBMain.h"
 #include "Print.h"
 #include "GameData.h"
-
+#include <assert.h>
+#include "ActorData.h"
 // Player Stats
 #define MAX_LIFE 3
 #define MAX_SHIELDS 3
@@ -27,7 +28,9 @@ void InitHUD(void){
 
 }
 
-void UpdateHUD(DynamicActor* _player){
+void UpdateHUD(UINT8 _playerID){
+	DynamicActor* _player = GetDynamicActor(_playerID);
+	assert(_player != 0);	// null check
 	// Draw the hearts
 	for(UINT8 i = 0; i < MAX_LIFE; i++){
 		if(i < _player->health){

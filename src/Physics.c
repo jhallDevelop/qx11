@@ -1,32 +1,38 @@
 #include "Physics.h"
 #include "assert.h"
+#include "ActorData.h"
 
-void Physics_Update(DynamicActor* _actorData){
+#define ACCELERATION 1
+#define FRICTION 2
+
+void Physics_Update(UINT8 _actorID){
+	DynamicActor* _actorData; 
+	_actorData = GetDynamicActor(_actorID);
 	assert(_actorData != 0);
 
 	// Apply horizontal accell
-	if(_actorData->dir.x != 0){
-		_actorData->vel.x += _actorData->dir.x * _actorData->accelConst;
+	if(_actorData->dir.moveX != 0 && _actorData->stateFlags & MOVING){
+		_actorData->vel.x += _actorData->dir.moveX * ACCELERATION;
 	} else{
 	// Apply horizontal friction
 		if(_actorData->vel.x > 0){
-			_actorData->vel.x -= _actorData->frictionConst;	
+			_actorData->vel.x -= FRICTION;	
 		} else if(_actorData->vel.x < 0){
-			_actorData->vel.x += _actorData->frictionConst;
+			_actorData->vel.x += FRICTION;
 		} else{
 			_actorData->vel.x = 0;
 		}
 	}
 
 	// Apply vert accell
-	if(_actorData->dir.y != 0){
-		_actorData->vel.y += _actorData->dir.y * _actorData->accelConst;
+	if(_actorData->dir.moveY != 0 && _actorData->stateFlags & MOVING){
+		_actorData->vel.y += _actorData->dir.moveY * ACCELERATION;
 	} else{
 	// Apply horizontal friction
 		if(_actorData->vel.y > 0){
-			_actorData->vel.y -= _actorData->frictionConst;	
+			_actorData->vel.y -= FRICTION;	
 		} else if(_actorData->vel.y < 0){
-			_actorData->vel.y += _actorData->frictionConst;
+			_actorData->vel.y += FRICTION;
 		} else{
 			_actorData->vel.y = 0;
 		}

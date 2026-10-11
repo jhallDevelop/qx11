@@ -24,9 +24,6 @@ const UINT8 anim_normal[] = {1, 0};
 const UINT8 anim_enemyFlicker[] = {1,0};
 
 
-// Movement
-Direction g_enemyDirection = DIR_RIGHT;
-
 // MOVEMENT Physics
 #define ENEMY_ACCEL 1
 #define ENEMY_FRICTION 4
@@ -39,14 +36,16 @@ UINT8 g_moveTimer = MAX_MOVE_TIMER;
 INT8 g_nextXPos = 0;
 INT8 g_nextYPos = 0;
 
-
+UINT8 g_enemyID;
 
 
 void UpdateEnemyCollisionCheck(void);
 
 void START(void){
-	DynamicActor* data = (DynamicActor*)THIS->custom_data;
-	InitDynamicActor(data);
+	g_enemyID = MakeDynamicActor();
+	THIS->custom_data[0] = g_enemyID;
+	DynamicActor* data;
+	data = GetDynamicActor(g_enemyID);
 	data->health = MAX_HEALTH;
 
 	// init random numbers
@@ -56,7 +55,7 @@ void START(void){
 }
 
 void AIUpdate(void){
-
+	/*
 	// Get player sprite data
 	DynamicActor* actor = (DynamicActor*)THIS->custom_data;
 
@@ -65,6 +64,7 @@ void AIUpdate(void){
 
 		INT16 spawnX = THIS->x;
 		INT16 spawnY = THIS->y;
+		
 		switch(g_enemyDirection){
 			case DIR_UP:
 				spawnY -= ENEMY_BULLET_SPAWN_DISTANCE;
@@ -163,15 +163,16 @@ void AIUpdate(void){
 	}
 	// increment timer
 	g_moveTimer++;
+	*/
 	
 }
 
 void UPDATE(void){
 	
-	DynamicActor* actorData = (DynamicActor*)THIS->custom_data;
+	DynamicActor* actorData = GetDynamicActor(g_enemyID);
 
 	// move towards direction
-	Physics_Update(actorData);
+	Physics_Update(g_enemyID);
 
 
 	UpdateEnemyCollisionCheck();
@@ -198,6 +199,7 @@ void DESTROY(void){
 }
 
 void UpdateEnemyCollisionCheck(void){
+	/*
 	UINT8 i;
 	Sprite* spr;
 
@@ -249,6 +251,7 @@ void UpdateEnemyCollisionCheck(void){
 			}
 		}
 	}
+	*/
 
 }
 

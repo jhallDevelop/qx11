@@ -1,9 +1,9 @@
 #ifndef HUD_H
 #define HUD_H
-#include "ActorData.h"
+#include <gb/gb.h>
 
 void InitHUD(void);
-extern void UpdateHUD(DynamicActor* _player);
+void UpdateHUD(UINT8 _playerID);
 
 #endif
 

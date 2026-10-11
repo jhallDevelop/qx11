@@ -1,9 +1,9 @@
 #ifndef PHYSICS_H
-#define PHSYICS_H
-#include "ActorData.h"
+#define PHYSICS_H
+#include <types.h>
 
 #define MAX_VELOCITY 16
 #define DIV_SCALE 16
 
-void Physics_Update(DynamicActor* _actorData);
+void Physics_Update(UINT8 _actorDataID);
 #endif

@@ -8,24 +8,24 @@
 
 #define BULLET_SPEED 1 
 
-DynamicActor* g_bulletData;
+UINT8 g_bulletDataID;
 
 void START(void){
 	// initialise random numbers
-	g_bulletData = (DynamicActor*)THIS->custom_data;
-	InitDynamicActor(g_bulletData);
-	
-	
+	g_bulletDataID = MakeDynamicActor();
+	THIS->custom_data[0] = g_bulletDataID;
 }
 
 
 void UPDATE(void){
 	UINT8 collisionTile = 0;
-	DynamicActor* bulletData = (DynamicActor*)THIS->custom_data;
+	
+	DynamicActor* bulletData;
+	bulletData = GetDynamicActor(g_bulletDataID);
 	// Move the bullet to the right, check for wall collisions
 	
 	// Move in direction
-	collisionTile = TranslateSprite(THIS, (BULLET_SPEED << delta_time) * bulletData->dir.x, (BULLET_SPEED << delta_time) * bulletData->dir.y);
+	collisionTile = TranslateSprite(THIS, (BULLET_SPEED << delta_time) * bulletData->dir.moveX, (BULLET_SPEED << delta_time) * bulletData->dir.moveY);
 
 
 	// wall collision check
@@ -38,5 +38,5 @@ void UPDATE(void){
 }
 
 void DESTROY(void){
-
+	FreeDynamicActor(g_bulletDataID);
 }
