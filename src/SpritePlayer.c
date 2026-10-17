@@ -218,14 +218,16 @@ void UpdateShooting(void){
 			spawnY -= BULLET_SPAWN_DISTANCE;
 		}
 
-		Sprite* bullet = SpriteManagerAdd(SpriteBullet,
+
+		UINT8 bulletActorIndex = MakeDynamicActor();
+		DynamicActor* bulletData = GetDynamicActor(bulletActorIndex);
+		Sprite* bulletSprite = SpriteManagerAdd(SpriteBullet,
 			spawnX,
 			spawnY
 		);
 
-	// pass along some custom data
-		DynamicActor* bulletData = (DynamicActor*)bullet->custom_data;
-
+		bulletSprite->custom_data[0] = bulletActorIndex;
+		
 		bulletData->dir.moveX = player->dir.facingX;
 		bulletData->dir.moveY = player->dir.facingY;
 		g_shootCooldown = MAX_COOLDOWN;	// frames to wait before next shot

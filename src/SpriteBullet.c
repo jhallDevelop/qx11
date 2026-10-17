@@ -3,9 +3,10 @@
 #include "ZGBMain.h"
 #include "Scroll.h"
 #include "ActorData.h"
+#include "Physics.h"
+#include "Render.h"
 
 #define SPAWN_RANGE 60
-
 #define BULLET_SPEED 1 
 
 UINT8 g_bulletDataID;
@@ -18,22 +19,9 @@ void START(void){
 
 
 void UPDATE(void){
-	UINT8 collisionTile = 0;
-	
-	DynamicActor* bulletData;
-	bulletData = GetDynamicActor(g_bulletDataID);
-	// Move the bullet to the right, check for wall collisions
-	
-	// Move in direction
-	collisionTile = TranslateSprite(THIS, (BULLET_SPEED << delta_time) * bulletData->dir.moveX, (BULLET_SPEED << delta_time) * bulletData->dir.moveY);
+	Physics_Update(g_bulletDataID);	// 4%
 
-
-	// wall collision check
-	if(collisionTile > 0){
-		// remove the sprite
-		SpriteManagerRemoveSprite(THIS);
-	}
-
+	Render_UpdateDynamicActor(THIS);	// .2%
 
 }
 
