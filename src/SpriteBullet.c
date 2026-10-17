@@ -9,22 +9,23 @@
 #define SPAWN_RANGE 60
 #define BULLET_SPEED 1 
 
-UINT8 g_bulletDataID;
-
 void START(void){
 	// initialise random numbers
-	g_bulletDataID = MakeDynamicActor();
-	THIS->custom_data[0] = g_bulletDataID;
+	
+	UINT8 bulletDataID = MakeDynamicActor();
+	THIS->custom_data[0] = bulletDataID;
+	DynamicActor* bulletData = GetDynamicActor(bulletDataID);
+	bulletData->stateFlags |= MOVING;
 }
 
 
 void UPDATE(void){
-	Physics_Update(g_bulletDataID);	// 4%
+	Physics_Update(THIS->custom_data[0]);	// 4%
 
 	Render_UpdateDynamicActor(THIS);	// .2%
 
 }
 
 void DESTROY(void){
-	FreeDynamicActor(g_bulletDataID);
+	FreeDynamicActor(THIS->custom_data[0]);
 }

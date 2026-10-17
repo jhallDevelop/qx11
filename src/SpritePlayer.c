@@ -219,15 +219,12 @@ void UpdateShooting(void){
 		}
 
 
-		UINT8 bulletActorIndex = MakeDynamicActor();
-		DynamicActor* bulletData = GetDynamicActor(bulletActorIndex);
 		Sprite* bulletSprite = SpriteManagerAdd(SpriteBullet,
 			spawnX,
 			spawnY
 		);
 
-		bulletSprite->custom_data[0] = bulletActorIndex;
-		
+		DynamicActor* bulletData = GetDynamicActor(bulletSprite->custom_data[0]);	
 		bulletData->dir.moveX = player->dir.facingX;
 		bulletData->dir.moveY = player->dir.facingY;
 		g_shootCooldown = MAX_COOLDOWN;	// frames to wait before next shot

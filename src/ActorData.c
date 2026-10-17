@@ -36,7 +36,7 @@ void InitStaticActor(StaticActor* _data){
 UINT8 MakeDynamicActor(void){
 	for(UINT8 i = 0; i < MAX_DYNAMIC_ACTORS; i++){
 		// find the next actor that isn't already alive
-		if(g_dynamicActorPool[i].stateFlags & ALIVE){
+		if(!(g_dynamicActorPool[i].stateFlags & ALIVE)){
 			// Initialise the data
 			InitDynamicActor(&g_dynamicActorPool[i]);
 
@@ -80,12 +80,12 @@ void FreeStaticActor(UINT8 _id){
 }
 
 DynamicActor* GetDynamicActor(UINT8 _actorID){
-	assert(_actorID >= MAX_DYNAMIC_ACTORS);
+	assert(_actorID < MAX_DYNAMIC_ACTORS);
 	return &g_dynamicActorPool[_actorID];
 
 }
 
 StaticActor* GetStaticActor(UINT8 _actorID){
-	assert(_actorID >= <MAX_STATIC_ACTORS);
+	assert(_actorID < <MAX_STATIC_ACTORS);
 	return &g_staticActorPool[_actorID];
 }
